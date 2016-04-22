@@ -1,0 +1,34 @@
+/**
+ * Created by Max on 16/4/22.
+ */
+var net = require('net');
+var dns = require('dns');
+var parse = require('url').parse;
+
+var url = 'http://imququ.com';
+
+var urlInfo = parse(url);
+console.log('userInfo: ' + urlInfo);
+
+dns.lookup(urlInfo.hostname, function(err, serverIP) {
+    var serverPort = urlInfo.port || 80;
+    console.log('serverIP : ', serverIP);
+    console.log('serverPort : ', serverPort);
+    console.log('connecting to server...');
+
+    var client = new net.Socket();
+
+    client.connect(serverPort, serverIP, function() {
+        console.log('ok');
+        client.on('data', function(data) {
+            console.log('receive data from: ' + data);
+        });
+
+        console.log('sending request header...');
+        client.write('GET' + urlInfo.path + 'HTTP/1.1\r\n');
+        client.write('Host: ' + urlInfo.hostname + '\r\n');
+        client.write('Connection: close' + '\r\n');
+        client.write('\r\n');
+    })
+
+});
