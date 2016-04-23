@@ -1,0 +1,29 @@
+.container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+    background-color: #00d6b2;
+}
+.container span {
+    font-size: 20px;
+    color: #fff;
+}
+
+#drag {
+    position: absolute;
+    left: 300px;
+    top: 300px;
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+    background-color: #7D9029;
+}
+#drag span {
+    font-size: 20px;
+    color: #fff;
+}
